@@ -1,4 +1,5 @@
-﻿using NewsParser.Interfaces;
+﻿using NewsParser.ContentExtractor;
+using NewsParser.ContentLoader;
 using NewsParser.Models;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,42 @@ namespace NewsParser.Parses
 {
     public class DefaultNewsParser : INewsParser
     {
-        public Task<IEnumerable<NewsItem>> ParseAsync(IEnumerable<RawNewsItem> rawItems)
-        {
-            var result = rawItems.Select(x => new NewsItem
-            {
-                Title = x.Title,
-                Url = x.Link,
-                PublishedAt = x.PublishedAt,
-                Content = x.Description
-            });
+        private readonly IContentLoader _loader;
+        private readonly IContentExtractorFactory _factory;
 
-            return Task.FromResult(result);
+        public DefaultNewsParser(IContentLoader loader, IContentExtractorFactory factory)
+        {
+            _loader = loader;
+            _factory = factory;
+        }
+
+        public async Task<IEnumerable<NewsItem>> ParseAsync(IEnumerable<RawNewsItem> rawItems)
+        {
+            var result = new List<NewsItem>();
+
+            foreach (var item in rawItems)
+            {
+                var html = await _loader.LoadContentAsync(item.Link);
+
+                if (string.IsNullOrEmpty(html))
+                {
+                    continue;
+                }
+
+                var extractor = _factory.GetExtractor(item.Source);
+                var content = extractor.Extract(html);
+
+                result.Add(new NewsItem
+                {
+                    Title = item.Title,
+                    Url = item.Link,
+                    PublishedAt = item.PublishedAt,
+                    Content = content,
+                    Source = item.Source
+                });
+            }
+
+            return result;
         }
     }
 }

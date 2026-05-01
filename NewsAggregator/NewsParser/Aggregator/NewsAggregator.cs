@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using NewsParser.Interfaces;
 using NewsParser.Models;
+using NewsParser.Parses;
+using NewsParser.Sources;
 
 namespace NewsParser.Aggregator
 {

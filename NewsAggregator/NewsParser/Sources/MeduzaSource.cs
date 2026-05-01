@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using NewsParser.Interfaces;
 using NewsParser.Models;
 using NewsParser.RSS;
 
@@ -21,9 +19,15 @@ namespace NewsParser.Sources
             _rss = rss;
         }
 
-        public Task<IEnumerable<RawNewsItem>> GetItemsAsync(CancellationToken ct)
+        public async Task<IEnumerable<RawNewsItem>> GetItemsAsync(CancellationToken ct)
         {
-            return _rss.LoadAsync("https://meduza.io/rss/all");
+            var items = await _rss.LoadAsync("https://meduza.io/rss/all");
+
+            return items.Select(x =>
+            {
+                x.Source = SourceName;
+                return x;
+            });
         }
     }
 }
