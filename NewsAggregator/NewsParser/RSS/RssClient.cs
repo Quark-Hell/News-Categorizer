@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel.Syndication;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+using NewsParser.Models;
+
+namespace NewsParser.RSS
+{
+    public class RssClient
+    {
+        private readonly HttpClient _http;
+
+        public RssClient(HttpClient http)
+        {
+            _http = http;
+        }
+
+        public async Task<IEnumerable<RawNewsItem>> LoadAsync(string url)
+        {
+            using var stream = await _http.GetStreamAsync(url);
+            using var reader = XmlReader.Create(stream);
+
+            var feed = SyndicationFeed.Load(reader);
+
+            return feed.Items.Select(x => new RawNewsItem
+            {
+                Title = x.Title.Text,
+                Link = x.Links.FirstOrDefault()?.Uri.ToString(),
+                PublishedAt = x.PublishDate.UtcDateTime,
+                Description = x.Summary?.Text
+            });
+        }
+    }
+}
