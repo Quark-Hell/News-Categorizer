@@ -2,9 +2,12 @@
 using NewsParser.Aggregator;
 using NewsParser.ContentExtractor;
 using NewsParser.ContentLoader;
-using NewsParser.Parses;
+using NewsParser.Parser;
 using NewsParser.RSS;
 using NewsParser.Sources;
+using Microsoft.EntityFrameworkCore;
+using News.Infrastructure;
+
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -27,6 +30,18 @@ builder.Services.AddHttpClient<IContentLoader, HtmlContentLoader>(client =>
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
 });
 
+//Data Base
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("Postgres"),
+        npgsqlOptions =>
+        {
+            npgsqlOptions.EnableRetryOnFailure();
+        });
+});
+builder.Services.AddScoped<NewsRepository>();
+
 // Parser
 builder.Services.AddSingleton<INewsParser, DefaultNewsParser>();
 
@@ -40,4 +55,5 @@ builder.Services.AddSingleton<NewsAggregator>();
 builder.Services.AddHostedService<Worker>();
 
 var host = builder.Build();
+
 host.Run();

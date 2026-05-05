@@ -1,13 +1,9 @@
 ﻿using NewsParser.ContentExtractor;
 using NewsParser.ContentLoader;
-using NewsParser.Models;
+using News.Domain;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NewsParser.Parses
+namespace NewsParser.Parser
 {
     public class DefaultNewsParser : INewsParser
     {

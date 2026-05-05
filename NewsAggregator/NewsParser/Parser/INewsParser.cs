@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NewsParser.Models;
+using News.Domain;
 
-namespace NewsParser.Parses
+namespace NewsParser.Parser
 {
     public interface INewsParser
     {

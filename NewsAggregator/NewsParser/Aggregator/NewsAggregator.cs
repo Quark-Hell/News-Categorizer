@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NewsParser.Models;
-using NewsParser.Parses;
+using News.Domain;
+using NewsParser.Parser;
 using NewsParser.Sources;
 
 namespace NewsParser.Aggregator
@@ -32,6 +32,7 @@ namespace NewsParser.Aggregator
                 foreach (var item in parsed)
                 {
                     item.Source = source.SourceName;
+                    item.Url = item.Url.Trim().ToLower();
                     result.Add(item);
                 }
             }

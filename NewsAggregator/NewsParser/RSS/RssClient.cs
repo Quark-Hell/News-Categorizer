@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-using NewsParser.Models;
+using News.Domain;
+
 
 namespace NewsParser.RSS
 {

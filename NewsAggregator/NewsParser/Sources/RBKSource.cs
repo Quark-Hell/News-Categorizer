@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NewsParser.Models;
+using News.Domain;
 using NewsParser.RSS;
 
 namespace NewsParser.Sources

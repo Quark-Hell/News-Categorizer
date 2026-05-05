@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="10.0.7" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\News.Domain\News.Domain.csproj" />
+    <ProjectReference Include="..\News.Infrastructure\News.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>
