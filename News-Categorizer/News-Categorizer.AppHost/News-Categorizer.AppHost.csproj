@@ -11,7 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\News-Categorizer.ApiService\News-Categorizer.ApiService.csproj" />
     <ProjectReference Include="..\News-Categorizer.Web\News-Categorizer.Web.csproj" />
     <ProjectReference Include="..\News.DbMigrator\News.DbMigrator.csproj" />
     <ProjectReference Include="..\NewsParser\NewsParser.csproj" />

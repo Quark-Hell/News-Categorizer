@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.AppHost", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.ServiceDefaults", "News-Categorizer.ServiceDefaults\News-Categorizer.ServiceDefaults.csproj", "{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.ApiService", "News-Categorizer.ApiService\News-Categorizer.ApiService.csproj", "{32528D48-F694-EA6E-105A-38B094685085}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.Web", "News-Categorizer.Web\News-Categorizer.Web.csproj", "{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.Tests", "News-Categorizer.Tests\News-Categorizer.Tests.csproj", "{59DF86B9-97BD-6E9E-6C3C-D9972AB18EB3}"
@@ -34,10 +32,6 @@ Global
 		{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32528D48-F694-EA6E-105A-38B094685085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32528D48-F694-EA6E-105A-38B094685085}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32528D48-F694-EA6E-105A-38B094685085}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32528D48-F694-EA6E-105A-38B094685085}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU

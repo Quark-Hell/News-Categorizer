@@ -34,13 +34,14 @@ builder.Services.AddHttpClient<IContentLoader, HtmlContentLoader>(client =>
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(
-        builder.Configuration.GetConnectionString("Postgres"),
+        builder.Configuration.GetConnectionString("newsdb"),
         npgsqlOptions =>
         {
             npgsqlOptions.EnableRetryOnFailure();
         });
 });
 builder.Services.AddScoped<NewsRepository>();
+
 
 // Parser
 builder.Services.AddSingleton<INewsParser, DefaultNewsParser>();
