@@ -7,14 +7,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UserSecretsId>2194a470-b1aa-4ef0-b60c-5b03b7528821</UserSecretsId>
+    <UserSecretsId>ab566ae6-9cfa-4248-988a-df969346752f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\News-Categorizer\NewsAggregator\News.DbMigrator\News.DbMigrator.csproj" />
-    <ProjectReference Include="..\..\..\News-Categorizer\NewsAggregator\NewsParser\NewsParser.csproj" />
     <ProjectReference Include="..\News-Categorizer.ApiService\News-Categorizer.ApiService.csproj" />
     <ProjectReference Include="..\News-Categorizer.Web\News-Categorizer.Web.csproj" />
+    <ProjectReference Include="..\News.DbMigrator\News.DbMigrator.csproj" />
+    <ProjectReference Include="..\NewsParser\NewsParser.csproj" />
   </ItemGroup>
 
   <ItemGroup>

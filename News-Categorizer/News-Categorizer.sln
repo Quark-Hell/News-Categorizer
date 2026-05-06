@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36511.14 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.AppHost", "News-Categorizer.AppHost\News-Categorizer.AppHost.csproj", "{9F786523-9840-476B-8134-7C5054144BEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.AppHost", "News-Categorizer.AppHost\News-Categorizer.AppHost.csproj", "{BABCCEF3-6ABE-4EBE-8530-81A3C84F54AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.ServiceDefaults", "News-Categorizer.ServiceDefaults\News-Categorizer.ServiceDefaults.csproj", "{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}"
 EndProject
@@ -10,13 +10,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.ApiService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.Web", "News-Categorizer.Web\News-Categorizer.Web.csproj", "{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsParser", "..\..\News-Categorizer\NewsAggregator\NewsParser\NewsParser.csproj", "{E487DE5E-FB7E-5379-961D-8305E744C8F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News-Categorizer.Tests", "News-Categorizer.Tests\News-Categorizer.Tests.csproj", "{59DF86B9-97BD-6E9E-6C3C-D9972AB18EB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.Infrastructure", "..\..\News-Categorizer\NewsAggregator\News.Infrastructure\News.Infrastructure.csproj", "{2FF2D2FA-B358-7351-D249-60C881421BC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsParser", "NewsParser\NewsParser.csproj", "{43FFBB98-13B6-DEED-A83B-A0554C808F70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.Domain", "..\..\News-Categorizer\NewsAggregator\News.Domain\News.Domain.csproj", "{4C5EFB35-9705-4E35-6453-CC9F16D15638}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.Infrastructure", "News.Infrastructure\News.Infrastructure.csproj", "{E9E31E61-33F2-DA31-F87F-E5B2334901A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.DbMigrator", "..\..\News-Categorizer\NewsAggregator\News.DbMigrator\News.DbMigrator.csproj", "{A42D3D26-E886-0764-DE06-81D3F12A9FFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.Domain", "News.Domain\News.Domain.csproj", "{ABF36E9E-CA9D-E521-06AC-BB09A2CE9DB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.DbMigrator", "News.DbMigrator\News.DbMigrator.csproj", "{7025F2F3-8009-28F1-50CB-EBC5B9A34DF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,10 +26,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F786523-9840-476B-8134-7C5054144BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F786523-9840-476B-8134-7C5054144BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F786523-9840-476B-8134-7C5054144BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F786523-9840-476B-8134-7C5054144BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABCCEF3-6ABE-4EBE-8530-81A3C84F54AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABCCEF3-6ABE-4EBE-8530-81A3C84F54AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABCCEF3-6ABE-4EBE-8530-81A3C84F54AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABCCEF3-6ABE-4EBE-8530-81A3C84F54AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{296BFB5C-4DF3-977F-6262-8DDEBAEB7AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -40,27 +42,31 @@ Global
 		{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E57A3B9-4E71-E105-FEDA-3DD1A6D95AB5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E487DE5E-FB7E-5379-961D-8305E744C8F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E487DE5E-FB7E-5379-961D-8305E744C8F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E487DE5E-FB7E-5379-961D-8305E744C8F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E487DE5E-FB7E-5379-961D-8305E744C8F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FF2D2FA-B358-7351-D249-60C881421BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FF2D2FA-B358-7351-D249-60C881421BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FF2D2FA-B358-7351-D249-60C881421BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FF2D2FA-B358-7351-D249-60C881421BC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C5EFB35-9705-4E35-6453-CC9F16D15638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C5EFB35-9705-4E35-6453-CC9F16D15638}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C5EFB35-9705-4E35-6453-CC9F16D15638}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C5EFB35-9705-4E35-6453-CC9F16D15638}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A42D3D26-E886-0764-DE06-81D3F12A9FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A42D3D26-E886-0764-DE06-81D3F12A9FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A42D3D26-E886-0764-DE06-81D3F12A9FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A42D3D26-E886-0764-DE06-81D3F12A9FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DF86B9-97BD-6E9E-6C3C-D9972AB18EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DF86B9-97BD-6E9E-6C3C-D9972AB18EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DF86B9-97BD-6E9E-6C3C-D9972AB18EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DF86B9-97BD-6E9E-6C3C-D9972AB18EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43FFBB98-13B6-DEED-A83B-A0554C808F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FFBB98-13B6-DEED-A83B-A0554C808F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FFBB98-13B6-DEED-A83B-A0554C808F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FFBB98-13B6-DEED-A83B-A0554C808F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9E31E61-33F2-DA31-F87F-E5B2334901A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9E31E61-33F2-DA31-F87F-E5B2334901A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9E31E61-33F2-DA31-F87F-E5B2334901A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9E31E61-33F2-DA31-F87F-E5B2334901A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF36E9E-CA9D-E521-06AC-BB09A2CE9DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF36E9E-CA9D-E521-06AC-BB09A2CE9DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF36E9E-CA9D-E521-06AC-BB09A2CE9DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF36E9E-CA9D-E521-06AC-BB09A2CE9DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7025F2F3-8009-28F1-50CB-EBC5B9A34DF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7025F2F3-8009-28F1-50CB-EBC5B9A34DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7025F2F3-8009-28F1-50CB-EBC5B9A34DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7025F2F3-8009-28F1-50CB-EBC5B9A34DF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A6A80B45-7FC4-47BF-9426-8BB47C418E2F}
+		SolutionGuid = {5E35DCE4-6F74-4902-A5AC-68B5EF9C42E6}
 	EndGlobalSection
 EndGlobal
