@@ -9,6 +9,6 @@ namespace NewsParser.Parser
 {
     public interface INewsParser
     {
-        Task<IEnumerable<NewsItem>> ParseAsync(IEnumerable<RawNewsItem> rawItems);
+        Task<IEnumerable<NewsItem>> ParseAsync(IEnumerable<NewsItem> rawItems);
     }
 }

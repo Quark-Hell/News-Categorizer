@@ -11,6 +11,6 @@ namespace NewsParser.Sources
     public interface INewsSource
     {
         string SourceName { get; }
-        Task<IEnumerable<RawNewsItem>> GetItemsAsync(CancellationToken ct);
+        Task<IEnumerable<NewsItem>> GetItemsAsync(CancellationToken ct);
     }
 }

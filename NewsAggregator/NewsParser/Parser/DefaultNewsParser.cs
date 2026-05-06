@@ -16,13 +16,13 @@ namespace NewsParser.Parser
             _factory = factory;
         }
 
-        public async Task<IEnumerable<NewsItem>> ParseAsync(IEnumerable<RawNewsItem> rawItems)
+        public async Task<IEnumerable<NewsItem>> ParseAsync(IEnumerable<NewsItem> rawItems)
         {
             var result = new List<NewsItem>();
 
             foreach (var item in rawItems)
             {
-                var html = await _loader.LoadContentAsync(item.Link);
+                var html = await _loader.LoadContentAsync(item.Url);
 
                 if (string.IsNullOrEmpty(html))
                 {
@@ -32,14 +32,9 @@ namespace NewsParser.Parser
                 var extractor = _factory.GetExtractor(item.Source);
                 var content = extractor.Extract(html);
 
-                result.Add(new NewsItem
-                {
-                    Title = item.Title,
-                    Url = item.Link,
-                    PublishedAt = item.PublishedAt,
-                    Content = content,
-                    Source = item.Source
-                });
+                item.Content = content;
+
+                result.Add(item);
             }
 
             return result;

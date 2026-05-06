@@ -20,19 +20,19 @@ namespace NewsParser.RSS
             _http = http;
         }
 
-        public async Task<IEnumerable<RawNewsItem>> LoadAsync(string url)
+        public async Task<IEnumerable<NewsItem>> LoadAsync(string url)
         {
             using var stream = await _http.GetStreamAsync(url);
             using var reader = XmlReader.Create(stream);
 
             var feed = SyndicationFeed.Load(reader);
 
-            return feed.Items.Select(x => new RawNewsItem
+            return feed.Items.Select(x => new NewsItem
             {
                 Title = x.Title.Text,
-                Link = x.Links.FirstOrDefault()?.Uri.ToString(),
+                Url = x.Links.FirstOrDefault()?.Uri.ToString(),
                 PublishedAt = x.PublishDate.UtcDateTime,
-                Description = x.Summary?.Text
+                Content = x.Summary?.Text
             });
         }
     }

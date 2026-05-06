@@ -19,7 +19,7 @@ namespace NewsParser.Sources
             _rss = rss;
         }
 
-        public async Task<IEnumerable<RawNewsItem>> GetItemsAsync(CancellationToken ct)
+        public async Task<IEnumerable<NewsItem>> GetItemsAsync(CancellationToken ct)
         {
             var items = await _rss.LoadAsync("https://rssexport.rbc.ru/rbcnews/news/30/full.rss");
 
