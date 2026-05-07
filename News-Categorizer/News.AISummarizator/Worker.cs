@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using News.Domain;
-using News.Domain.Models;
+using News.Domain.AIModels;
 using News.Infrastructure;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace News.AISummarizator;
@@ -44,7 +45,10 @@ public class Worker : BackgroundService
 
             if (newsItems != null && newsItems.Count > 0)
             {
-                await SendSummaryRequestAsync(newsItems, stoppingToken);
+                var response = await SendSummaryRequestAsync(newsItems, stoppingToken);
+                if (response != null)
+                    await repo.SaveSummariesAsync(response, stoppingToken);
+
                 continue;
             }
 
@@ -76,6 +80,7 @@ public class Worker : BackgroundService
             {{
               ""results"": [
                 {{
+                  ""id"": ""int"",
                   ""summary"": ""string"",
                   ""topics"": [
                     {{ ""name"": ""string"", ""score"": 0.0 }}
@@ -87,6 +92,7 @@ public class Worker : BackgroundService
             NEWS:
             {string.Join("\n\n", newsItems.Select(n =>
                 $"""
+            ID: {n.Id}
             TITLE: {n.Title}
             CONTENT: {n.Content}
             """))}
@@ -133,7 +139,7 @@ public class Worker : BackgroundService
         return await response.Content.ReadFromJsonAsync<OllamaChatResponse>(ct);
     }
 
-    private async Task SendSummaryRequestAsync(List<NewsItem> newsItems, CancellationToken ct)
+    private async Task<AiSummaryResponse?> SendSummaryRequestAsync(List<NewsItem> newsItems, CancellationToken ct)
     {
         try
         {
@@ -145,14 +151,18 @@ public class Worker : BackgroundService
             var request = BuildRequest(prompt);
 
             var result = await SendRequestAsync(http, request, ct);
+            var deserialized = DeserializeAiResponse(result);
 
             _logger.LogInformation(
                 "Ollama response: {content}",
                 result?.Message?.Content ?? "<empty>");
+
+            return deserialized;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to send request to Ollama");
+            return null;
         }
     }
 
@@ -178,6 +188,28 @@ public class Worker : BackgroundService
         {
             _logger.LogError(ex, "Failed to send request to Ollama");
         }
+    }
+
+    private AiSummaryResponse? DeserializeAiResponse(OllamaChatResponse? response)
+    {
+        if (response == null)
+            return null;
+        if (response.Message == null)
+            return null;
+
+        var json = response.Message.Content
+            .Replace("```json", "")
+            .Replace("```", "")
+            .Trim();
+
+        var aiResponse = JsonSerializer.Deserialize<AiSummaryResponse>(
+        json,
+        new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+        return aiResponse;
     }
 }
 
