@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using News.Domain;
 using News.Domain.Models;
+using News.Domain.AIModels;
 using System;
 
 namespace News.Infrastructure
@@ -66,6 +67,70 @@ namespace News.Infrastructure
                     .OrderBy(n => n.PublishedAt)
                     .Take((int)takeCount)
                     .ToListAsync(ct);
+            }, ct);
+        }
+
+        public async Task<int> SaveSummariesAsync(
+            AiSummaryResponse aiResponse,
+            CancellationToken ct)
+        {
+            return await ExecuteWithRetryAsync(async () =>
+            {
+                var ids = aiResponse.Results
+                    .Select(x => x.Id)
+                    .ToList();
+
+                // Загружаем новости вместе с текущими топиками
+                var newsItems = await _db.NewsItems
+                    .Include(x => x.NewsTopics)
+                    .Where(x => ids.Contains(x.Id))
+                    .ToListAsync(ct);
+
+                // Загружаем все доступные топики
+                var topics = await _db.Set<Topic>()
+                    .ToListAsync(ct);
+
+                int updatedCount = 0;
+
+                foreach (var result in aiResponse.Results)
+                {
+                    var news = newsItems.FirstOrDefault(x => x.Id == result.Id);
+
+                    if (news == null)
+                        continue;
+
+                    news.Summary = result.Summary;
+                    news.IsSummarized = true;
+
+                    // Удаляем старые топики
+                    news.NewsTopics.Clear();
+
+                    // Добавляем новые
+                    foreach (var topicResult in result.Topics)
+                    {
+                        var topic = topics.FirstOrDefault(t =>
+                            t.Name.Equals(
+                                topicResult.Name,
+                                StringComparison.OrdinalIgnoreCase));
+
+                        if (topic == null)
+                            continue;
+
+                        news.NewsTopics.Add(new NewsTopic
+                        {
+                            NewsItemId = news.Id,
+                            TopicId = topic.Id,
+                            Score = topicResult.Score
+                        });
+                    }
+
+                    updatedCount++;
+                }
+
+                await _db.SaveChangesAsync(ct);
+
+                return updatedCount;
+
             }, ct);
         }
 
