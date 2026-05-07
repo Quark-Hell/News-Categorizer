@@ -10,10 +10,21 @@ namespace NewsParser.ContentExtractor
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
-            var node = doc.DocumentNode
-                .SelectSingleNode("//div[contains(@class,'article-formatted-body')]");
+            // 1. try article
+            var article = doc.DocumentNode.SelectSingleNode("//article");
+            if (article != null)
+                return article.InnerText.Trim();
 
-            return node?.InnerText.Trim() ?? string.Empty;
+            // 2. fallback paragraphs
+            var paragraphs = doc.DocumentNode.SelectNodes("//p");
+            if (paragraphs != null)
+            {
+                return string.Join("\n",
+                    paragraphs.Select(p => p.InnerText.Trim())
+                              .Where(t => !string.IsNullOrWhiteSpace(t)));
+            }
+
+            return string.Empty;
         }
     }
 }

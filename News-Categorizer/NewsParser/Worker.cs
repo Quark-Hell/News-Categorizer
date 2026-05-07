@@ -30,7 +30,7 @@ namespace NewsParser
 
                 _logger.LogInformation($"Parsed {news.Count} items");
 
-                await Task.Delay(TimeSpan.FromMinutes(10), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(30), stoppingToken);
             }
         }
     }

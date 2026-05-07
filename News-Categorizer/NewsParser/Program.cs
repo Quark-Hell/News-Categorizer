@@ -15,12 +15,12 @@ builder.Services.AddHttpClient();
 
 // Sources
 builder.Services.AddSingleton<INewsSource, HabrSource>();
-builder.Services.AddSingleton<INewsSource, RBKSource>();
+builder.Services.AddSingleton<INewsSource, VCruSource>();
 builder.Services.AddSingleton<INewsSource, MeduzaSource>();
 
 // Content Extractor
 builder.Services.AddSingleton<HabrContentExtractor>();
-builder.Services.AddSingleton<RBKContentExtractor>();
+builder.Services.AddSingleton<VCruContentExtractor>();
 builder.Services.AddSingleton<MeduzaContentExtractor>();
 
 builder.Services.AddSingleton<IContentExtractorFactory, ContentExtractorFactory>();

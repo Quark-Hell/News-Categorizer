@@ -8,20 +8,20 @@ using NewsParser.RSS;
 
 namespace NewsParser.Sources
 {
-    public class RBKSource : INewsSource
+    public class VCruSource : INewsSource
     {
         private readonly RssClient _rss;
 
-        public string SourceName => "RBK";
+        public string SourceName => "VC.ru";
 
-        public RBKSource(RssClient rss)
+        public VCruSource(RssClient rss)
         {
             _rss = rss;
         }
 
         public async Task<IEnumerable<NewsItem>> GetItemsAsync(CancellationToken ct)
         {
-            var items = await _rss.LoadAsync("https://rssexport.rbc.ru/rbcnews/news/30/full.rss");
+            var items = await _rss.LoadAsync("https://vc.ru/rss/all");
 
             return items.Select(x =>
             {

@@ -16,7 +16,7 @@ namespace NewsParser.ContentExtractor
             return source switch
             {
                 "Habr" => _provider.GetRequiredService<HabrContentExtractor>(),
-                "RBK" => _provider.GetRequiredService<RBKContentExtractor>(),
+                "VC.ru" => _provider.GetRequiredService<VCruContentExtractor>(),
                 "Meduza" => _provider.GetRequiredService<MeduzaContentExtractor>(),
                 _ => throw new NotSupportedException()
             };
