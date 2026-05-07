@@ -51,8 +51,7 @@ namespace News.Infrastructure.Migrations
                 columns: table => new
                 {
                     NewsItemId = table.Column<int>(type: "integer", nullable: false),
-                    TopicId = table.Column<int>(type: "integer", nullable: false),
-                    Score = table.Column<double>(type: "double precision", nullable: false)
+                    TopicId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,9 +89,9 @@ namespace News.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_NewsTopics_TopicId_Score",
+                name: "IX_NewsTopics_TopicId",
                 table: "NewsTopics",
-                columns: new[] { "TopicId", "Score" });
+                column: "TopicId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Topics_Name",

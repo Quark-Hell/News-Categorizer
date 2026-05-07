@@ -13,7 +13,5 @@ namespace News.Domain.Models
 
         public int TopicId { get; set; }
         public Topic Topic { get; set; } = null!;
-
-        public double Score { get; set; } 
     }
 }

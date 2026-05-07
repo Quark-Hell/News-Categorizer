@@ -54,11 +54,6 @@ namespace News.Infrastructure
             modelBuilder.Entity<NewsTopic>(entity =>
             {
                 entity.HasKey(x => new { x.NewsItemId, x.TopicId });
-
-                entity.Property(x => x.Score)
-                      .IsRequired();
-
-                entity.HasIndex(x => new { x.TopicId, x.Score });
             });
 
             modelBuilder.Entity<Topic>().HasData(

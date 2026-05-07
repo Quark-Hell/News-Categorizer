@@ -119,8 +119,7 @@ namespace News.Infrastructure
                         news.NewsTopics.Add(new NewsTopic
                         {
                             NewsItemId = news.Id,
-                            TopicId = topic.Id,
-                            Score = topicResult.Score
+                            TopicId = topic.Id
                         });
                     }
 

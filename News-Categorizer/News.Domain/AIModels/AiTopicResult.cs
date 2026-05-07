@@ -9,7 +9,5 @@ namespace News.Domain.AIModels
     public class AiTopicResult
     {
         public string Name { get; set; } = string.Empty;
-
-        public double Score { get; set; }
     }
 }

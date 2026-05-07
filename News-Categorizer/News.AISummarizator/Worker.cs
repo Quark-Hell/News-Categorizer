@@ -73,7 +73,6 @@ public class Worker : BackgroundService
             - Return ONLY valid JSON
             - No markdown
             - No explanations
-            - Score must be float between 0 and 1
             - Max 3 topics per article
             
             FORMAT:
@@ -83,7 +82,7 @@ public class Worker : BackgroundService
                   ""id"": ""int"",
                   ""summary"": ""string"",
                   ""topics"": [
-                    {{ ""name"": ""string"", ""score"": 0.0 }}
+                    {{ ""name"": ""string"" }}
                   ]
                 }}
               ]

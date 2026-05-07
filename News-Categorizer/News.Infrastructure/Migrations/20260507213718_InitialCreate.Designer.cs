@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace News.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260507023847_InitialCreate")]
+    [Migration("20260507213718_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,12 +33,9 @@ namespace News.Infrastructure.Migrations
                     b.Property<int>("TopicId")
                         .HasColumnType("integer");
 
-                    b.Property<double>("Score")
-                        .HasColumnType("double precision");
-
                     b.HasKey("NewsItemId", "TopicId");
 
-                    b.HasIndex("TopicId", "Score");
+                    b.HasIndex("TopicId");
 
                     b.ToTable("NewsTopics");
                 });
