@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace News.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class nitialreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +25,8 @@ namespace News.Infrastructure.Migrations
                     PublishedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Source = table.Column<string>(type: "text", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
-                    Summary = table.Column<string>(type: "text", nullable: false)
+                    Summary = table.Column<string>(type: "text", nullable: false),
+                    IsSummarized = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {

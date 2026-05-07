@@ -62,7 +62,7 @@ namespace News.Infrastructure
             {
                 return await _db.NewsItems
                     .AsNoTracking()
-                    .Where(n => string.IsNullOrWhiteSpace(n.Summary))
+                    .Where(n => n.IsSummarized == false)
                     .OrderBy(n => n.PublishedAt)
                     .Take((int)takeCount)
                     .ToListAsync(ct);

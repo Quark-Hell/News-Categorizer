@@ -12,6 +12,7 @@ namespace News.Domain
         public string Source { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
         public string Summary { get; set; } = string.Empty;
+        public bool IsSummarized { get; set; } = false;
 
         public List<NewsTopic> NewsTopics { get; set; } = new();
     }
