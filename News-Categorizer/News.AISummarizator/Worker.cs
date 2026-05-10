@@ -16,6 +16,9 @@ public class Worker : BackgroundService
 
     private string[] _topics;
 
+    private readonly string _aiModel = "qwen3.5:2b";
+    private readonly uint _newsBatching = 1;
+
     public Worker(
         ILogger<Worker> logger,
         IServiceScopeFactory scopeFactory,
@@ -41,7 +44,7 @@ public class Worker : BackgroundService
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
-            var newsItems = await repo.FetchNewsFromDBAsync(5, stoppingToken);
+            var newsItems = await repo.FetchNewsFromDBAsync(_newsBatching, stoppingToken);
 
             if (newsItems != null && newsItems.Count > 0)
             {
@@ -64,7 +67,6 @@ public class Worker : BackgroundService
             TASK:
             For each news item:
             1. Write a short summary (1-2 sentences)
-            2. Assign topics with relevance scores (0 to 1)
             
             ALLOWED TOPICS:
             {string.Join(", ", _topics)}
@@ -95,13 +97,16 @@ public class Worker : BackgroundService
             TITLE: {n.Title}
             CONTENT: {n.Content}
             """))}
+
+            ALLOWED TOPICS:
+            {string.Join(", ", _topics)}
             ";
     }
 
     private OllamaChatRequest BuildRequest(string prompt)
     {
         return new OllamaChatRequest(
-            Model: "llama3.2",
+            Model: _aiModel,
             Messages: [new OllamaMessage("user", prompt)],
             Stream: false
         );
@@ -115,7 +120,7 @@ public class Worker : BackgroundService
         {
             var tags = await http.GetStringAsync("/api/tags", ct);
 
-            if (tags.Contains("llama3.2"))
+            if (tags.Contains(_aiModel))
                 return;
 
             _logger.LogInformation("Model not ready yet. Waiting...");
@@ -123,7 +128,7 @@ public class Worker : BackgroundService
             await Task.Delay(TimeSpan.FromMinutes(2), ct);
         }
 
-        throw new Exception("Model llama3.2 is not available in Ollama");
+        throw new Exception($"Model {_aiModel} is not available in Ollama");
     }
 
     private async Task<OllamaChatResponse?> SendRequestAsync(

@@ -24,7 +24,7 @@ var ollama = builder.AddContainer("ollama", "ollama/ollama")
 
 builder.AddContainer("ollama-init", "curlimages/curl")
     .WithArgs("sh", "-c",
-        "sleep 10 && curl http://ollama:11434/api/pull -d '{\"name\":\"llama3.2\"}'")
+        "sleep 10 && curl http://ollama:11434/api/pull -d '{\"name\":\"qwen3.5:2b\"}'")
     .WaitFor(ollama);
 
 builder.AddProject<Projects.News_AISummarizator>("news-aisummarizator")
