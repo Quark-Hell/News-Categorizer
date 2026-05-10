@@ -108,7 +108,9 @@ public class Worker : BackgroundService
         return new OllamaChatRequest(
             Model: _aiModel,
             Messages: [new OllamaMessage("user", prompt)],
-            Stream: false
+            Stream: false,
+            Options: new OllamaOptions(Temperature: 0.1f),
+            Think: false
         );
     }
 
@@ -222,7 +224,12 @@ public class Worker : BackgroundService
 public record OllamaChatRequest(
     [property: JsonPropertyName("model")] string Model,
     [property: JsonPropertyName("messages")] List<OllamaMessage> Messages,
-    [property: JsonPropertyName("stream")] bool Stream
+    [property: JsonPropertyName("stream")] bool Stream,
+    [property: JsonPropertyName("options")] OllamaOptions? Options = null,
+    [property: JsonPropertyName("think")] bool Think = false 
+);
+public record OllamaOptions(
+    [property: JsonPropertyName("temperature")] float Temperature
 );
 
 public record OllamaMessage(
