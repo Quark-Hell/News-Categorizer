@@ -33,4 +33,10 @@ builder.AddProject<Projects.News_AISummarizator>("news-aisummarizator")
     .WaitFor(dbMigrator)
     .WaitFor(ollama);
 
+var telegramToken = builder.Configuration["Telegram:BotToken"];
+builder.AddProject<Projects.News_TelegramBot>("news-telegrambot")
+    .WithReference(db)
+    .WaitFor(dbMigrator)
+    .WithEnvironment("Telegram__BotToken", telegramToken);
+
 builder.Build().Run();

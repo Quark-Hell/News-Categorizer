@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.DbMigrator", "News.DbM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.AISummarizator", "News.AISummarizator\News.AISummarizator.csproj", "{5EC8D9EE-DA08-33E0-E3DE-ECD747F73E66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.TelegramBot", "News.TelegramBot\News.TelegramBot.csproj", "{72A65B13-1742-F8D6-B2E1-5CC92D2E6F99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{5EC8D9EE-DA08-33E0-E3DE-ECD747F73E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC8D9EE-DA08-33E0-E3DE-ECD747F73E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC8D9EE-DA08-33E0-E3DE-ECD747F73E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72A65B13-1742-F8D6-B2E1-5CC92D2E6F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72A65B13-1742-F8D6-B2E1-5CC92D2E6F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72A65B13-1742-F8D6-B2E1-5CC92D2E6F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72A65B13-1742-F8D6-B2E1-5CC92D2E6F99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

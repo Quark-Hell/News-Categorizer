@@ -8,8 +8,11 @@ namespace News.Domain.Models
 {
     public class User
     {
-        public long Id { get; set; }          // Telegram Chat ID
+        public int Id { get; set; }
+        public long TelegramId { get; set; }
         public string Username { get; set; } = string.Empty;
-        public string FirstName { get; set; } = string.Empty;
+        public TimeOnly DigestTime { get; set; }
+        public List<UserTopicSubscription> Subscriptions { get; set; } = [];
+
     }
 }

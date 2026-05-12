@@ -14,6 +14,7 @@
     <ProjectReference Include="..\News-Categorizer.Web\News-Categorizer.Web.csproj" />
     <ProjectReference Include="..\News.AISummarizator\News.AISummarizator.csproj" />
     <ProjectReference Include="..\News.DbMigrator\News.DbMigrator.csproj" />
+    <ProjectReference Include="..\News.TelegramBot\News.TelegramBot.csproj" />
     <ProjectReference Include="..\NewsParser\NewsParser.csproj" />
   </ItemGroup>
 
